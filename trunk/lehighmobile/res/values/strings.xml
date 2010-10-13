@@ -2,9 +2,10 @@
 <resources>
     <string name="hello">What would you like to do?</string>
     <string name="app_name">LehighMobile</string>
-<string name="button1">Get Directions</string>
-<string name="button2">Find Building</string>
+
+<string name="button1">Get Directions</string><string name="button2">Find Building</string>
 <string name="button3">Look at Map</string>
+
 
 
 
