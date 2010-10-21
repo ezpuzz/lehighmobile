@@ -17,4 +17,5 @@
 
 
 
+<uses-sdk android:minSdkVersion="6"></uses-sdk>
 </manifest> 
