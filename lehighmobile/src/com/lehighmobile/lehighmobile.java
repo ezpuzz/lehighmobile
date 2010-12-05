@@ -1,7 +1,5 @@
 package com.lehighmobile;
 
-import java.util.List;
-
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
@@ -16,7 +14,9 @@ import android.widget.Button;
 public class lehighmobile extends MapActivity {
 	static final int DIALOG_BUILDING_LIST = 0;
 	/* currently lookup holds LL, then PA */
-	static final GeoPoint[] locationCoordinates = { new GeoPoint(40607425, -75374926), new GeoPoint(40607857,-75378995) };
+	static final Building[] campusBuildings = { 
+		new Building("Lewis Lab", new GeoPoint(40607425, -75374926)),
+		new Building("Packard", new GeoPoint(40607857,-75378995)) };
 
 	/** Called when the activity is first created. */
 	@Override
@@ -41,7 +41,6 @@ public class lehighmobile extends MapActivity {
 			builder.setTitle("Choose Destination");
 			builder.setItems(items, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int item) {
-
 					if (item < 2) {
 						setContentView(R.layout.map);
 						MapView mapView;
@@ -50,7 +49,7 @@ public class lehighmobile extends MapActivity {
 						mapView.setBuiltInZoomControls(true);
 						
 						mapView.getController().setZoom(18);
-						mapView.getController().setCenter(locationCoordinates[item]);
+						mapView.getController().setCenter(campusBuildings[item].getCoordinates());
 					} else {
 						/*
 						 * This means somthing went wrong, or item is not what I
