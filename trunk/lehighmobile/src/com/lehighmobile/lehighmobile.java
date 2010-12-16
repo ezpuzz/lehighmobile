@@ -6,15 +6,22 @@ import com.google.android.maps.MapView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 
 
-public class lehighmobile extends MapActivity {
+public class lehighmobile extends MapActivity implements LocationListener {
 	static final int DIALOG_BUILDING_LIST = 0;
 	/* currently lookup holds LL, then PA */
 	static final Building[] campusBuildings = { 
@@ -133,11 +140,16 @@ public class lehighmobile extends MapActivity {
 		new Building("Taylor Gymnasium", new GeoPoint(	40607359	,	-75374123	),"Other"),
 		};
 
+	LocationManager lm;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
+		lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+
 		Button btn = (Button) findViewById(R.id.button1);
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -146,6 +158,26 @@ public class lehighmobile extends MapActivity {
 			}
 		});
 	}
+	
+	@Override
+	protected void onResume() {
+		/*
+		 * onResume is is always called after onStart, even if the app hasn't been
+		 * paused
+		 *
+		 * add location listener and request updates every 1000ms or 10m
+		 */
+		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10f, this);
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		/* GPS, as it turns out, consumes battery like crazy */
+		lm.removeUpdates(this);
+		super.onResume();
+	}
+
 
 	protected Dialog onCreateDialog(int id) {
 		/*This code creates arrays sorting buildings by name and abbr*/
