@@ -1,18 +1,16 @@
 package com.lehighmobile;
 
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.android.maps.MyLocationOverlay;
 
 public class lehighmobile extends Activity {
 	static final int DIALOG_SHOW_BUILDING = 0;
@@ -45,6 +43,7 @@ public class lehighmobile extends Activity {
 
 	protected Dialog onCreateDialog(int id) {
 
+		Arrays.sort(BuildingData.campusBuildings);
 		CharSequence[] items = new CharSequence[BuildingData.campusBuildings.length];
 		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
 			items[q] = BuildingData.campusBuildings[q].name + " "
