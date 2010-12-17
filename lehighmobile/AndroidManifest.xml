@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.lehighmobile" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
+	package="com.lehighmobile" android:versionCode="1" android:versionName="1.0"
+	android:installLocation="auto">
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:label="@string/app_name" android:name="lehighmobile">
 			<intent-filter>
@@ -8,18 +9,25 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<uses-library android:name="com.google.android.maps" android:required="true"/>
+		<uses-library android:name="com.google.android.maps"
+			android:required="true" />
 
-	<uses-sdk android:minSdkVersion="4"></uses-sdk></application>
+		<uses-sdk android:minSdkVersion="4"></uses-sdk>
+		<activity android:name=".ShowBuilding">
+			<intent-filter>
+				<action android:name="com.lehighmobile.action.SHOW_BUILDING"></action>
+			</intent-filter>
+		</activity>
+		<activity android:name=".ShowDirections"></activity>
+	</application>
 
 	<uses-permission android:name="android.permission.INTERNET" />
-	
-	 <uses-permission 
-        android:name="android.permission.ACCESS_FINE_LOCATION" />
-	
+
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
 
 
-<uses-sdk android:targetSdkVersion="8" android:minSdkVersion="8"></uses-sdk>
+
+	<uses-sdk android:targetSdkVersion="8" android:minSdkVersion="8"></uses-sdk>
 </manifest> 
