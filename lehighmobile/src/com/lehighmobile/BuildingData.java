@@ -118,37 +118,4 @@ public final class BuildingData {
 		new Building("Parking Garage", new GeoPoint(	40607972	,	-75372157	),"Other"),
 		new Building("Taylor Gymnasium", new GeoPoint(	40607359	,	-75374123	),"Other"),
 		};
-	
-	/*This code creates arrays sorting buildings by name and abbr*/
-	/*Building [] buildingsByName = new Building[campusBuildings.length];
-	Building [] buildingsByAbbr = new Building[campusBuildings.length];
-	String [] buildings_name = new String[campusBuildings.length];
-	String [] buildings_abbr = new String[campusBuildings.length];
-	for (int p = 0; p<campusBuildings.length; p++)
-	{
-		buildings_name[p] = campusBuildings[p].name;
-		buildings_abbr[p] = campusBuildings[p].abbr;
-	}
-	Arrays.sort(buildings_name);
-	Arrays.sort(buildings_abbr);
-	boolean continue1;
-	boolean continue2;
-	for (int p = 0; p<campusBuildings.length; p++)
-	{
-		continue1 = true;
-		continue2 = true;
-		for (int q = 0; q<campusBuildings.length && (continue1 || continue2) ; q++)
-		{
-			if (buildings_name[p].equals(campusBuildings[q].name))
-			{
-				buildingsByName[p] = campusBuildings[q];
-				continue1 = false;
-			}
-			if (buildings_abbr[p].equals(campusBuildings[q].abbr))
-			{
-				buildingsByAbbr[p] = campusBuildings[q];
-				continue2 = false;
-			}
-		}
-	}*/
 }
