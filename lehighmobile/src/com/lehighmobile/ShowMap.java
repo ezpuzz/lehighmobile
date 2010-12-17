@@ -1,37 +1,33 @@
 package com.lehighmobile;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import android.graphics.drawable.Drawable;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 
-public class ShowDirections extends MapActivity {
+public class ShowMap extends MapActivity {
 
 	private MyLocationOverlay myLocation;
 	private MapView mapView;
-	static public Building currBuilding = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map);
 		initMap();
-        mapView.setClickable(true);
-        mapView.setEnabled(true);
-     
-        mapView.displayZoomControls(true);
-        
-        createAndShowMyItemizedOverlay();
-		mapView.getController().setCenter(currBuilding.getCoordinates());
+		mapView.setClickable(true);
+		mapView.setEnabled(true);
+
+		mapView.displayZoomControls(true);
+
+		createAndShowMyItemizedOverlay();
 	}
 
 	@Override
@@ -69,6 +65,7 @@ public class ShowDirections extends MapActivity {
 			public void run() {
 				// move to location
 				mapView.getController().animateTo(myLocation.getMyLocation());
+				mapView.getController().setZoom(17);
 			}
 		});
 	}
@@ -90,22 +87,43 @@ public class ShowDirections extends MapActivity {
 			}
 		}
 
-		// initialize icon
-		Drawable icon = getResources().getDrawable(R.drawable.pointer);
-		icon.setBounds(0, 0, icon.getIntrinsicWidth(),
-				icon.getIntrinsicHeight());
+		ArrayList<Drawable> BuildingIcons = new ArrayList<Drawable>();
+		BuildingIcons.add(getResources().getDrawable(R.drawable.academic));
+		BuildingIcons.add(getResources().getDrawable(R.drawable.fraternity));
+		BuildingIcons.add(getResources().getDrawable(R.drawable.library));
+		BuildingIcons.add(getResources().getDrawable(R.drawable.other));
+		BuildingIcons.add(getResources().getDrawable(R.drawable.residential));
+		BuildingIcons.add(getResources().getDrawable(R.drawable.restaurant));
+		BuildingIcons.add(getResources().getDrawable(R.drawable.service));
+		
+		String[] buildingTypes = {"Academic"};
 
-		// target building icon
-		LehighItemizedOverlay targetOverlay = new LehighItemizedOverlay(icon);
-		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
-			if(BuildingData.campusBuildings[q].name == currBuilding.name)
-			targetOverlay.addItem(BuildingData.campusBuildings[q]);
+		// initialize icon
+		for (Drawable drawable : BuildingIcons) {
+			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+				drawable.getIntrinsicHeight());
 		}
-		overlays.add(targetOverlay);
+
+		// academic building icon
+		LehighItemizedOverlay academicOverlay = new LehighItemizedOverlay(
+				BuildingIcons.get(0));
+		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
+			if (BuildingData.campusBuildings[q].type == "Academic")
+				academicOverlay.addItem(BuildingData.campusBuildings[q]);
+		}
+		overlays.add(academicOverlay);
+
+		// academic building icon
+		LehighItemizedOverlay fratOverlay = new LehighItemizedOverlay(BuildingIcons.get(1));
+		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
+			if (BuildingData.campusBuildings[q].type == "Fraternity")
+				fratOverlay.addItem(BuildingData.campusBuildings[q]);
+		}
+		overlays.add(fratOverlay);
 
 		// user location overlay
 		overlays.add(myLocation);
-		
+
 		// redraw map
 		mapView.postInvalidate();
 	}

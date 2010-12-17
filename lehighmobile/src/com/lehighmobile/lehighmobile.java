@@ -10,13 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.android.maps.MapView;
-
 public class lehighmobile extends Activity {
 	static final int DIALOG_SHOW_BUILDING = 0;
 	static final int DIALOG_GET_DIRECTIONS = 1;
-
-	private MapView mapView;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -37,6 +33,14 @@ public class lehighmobile extends Activity {
 					public void onClick(View v) {
 						showDialog(DIALOG_GET_DIRECTIONS);
 
+					}
+				});
+		
+		findViewById(R.id.button3).setOnClickListener(
+				new View.OnClickListener() {
+					public void onClick(View v) {
+						Intent showMap = new Intent (lehighmobile.this, ShowMap.class);
+						startActivity(showMap);
 					}
 				});
 	}
@@ -61,7 +65,7 @@ public class lehighmobile extends Activity {
 					ShowBuilding.currBuilding = BuildingData.campusBuildings[item];
 					Intent showB = new Intent(lehighmobile.this,
 							ShowBuilding.class);
-					startActivity(new Intent(showB));
+					startActivity(showB);
 				}
 			});
 			d = builder.create();
@@ -71,9 +75,9 @@ public class lehighmobile extends Activity {
 			builder.setItems(items, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int item) {
 					ShowDirections.currBuilding = BuildingData.campusBuildings[item];
-					Intent showB = new Intent(lehighmobile.this,
+					Intent showD = new Intent(lehighmobile.this,
 							ShowDirections.class);
-					startActivity(new Intent(showB));
+					startActivity(showD);
 				}
 			});
 			d = builder.create();

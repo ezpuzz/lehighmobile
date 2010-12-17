@@ -14,11 +14,11 @@
 
 		<uses-sdk android:minSdkVersion="4"></uses-sdk>
 		<activity android:name=".ShowBuilding">
-			<intent-filter>
-				<action android:name="com.lehighmobile.action.SHOW_BUILDING"></action>
-			</intent-filter>
 		</activity>
-		<activity android:name=".ShowDirections"></activity>
+		<activity android:name=".ShowDirections">
+		</activity>
+		<activity android:name=".ShowMap">
+		</activity>
 	</application>
 
 	<uses-permission android:name="android.permission.INTERNET" />
