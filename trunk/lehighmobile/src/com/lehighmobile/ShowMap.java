@@ -120,6 +120,46 @@ public class ShowMap extends MapActivity {
 				fratOverlay.addItem(BuildingData.campusBuildings[q]);
 		}
 		overlays.add(fratOverlay);
+		
+		// academic building icon
+		LehighItemizedOverlay libraryOverlay = new LehighItemizedOverlay(BuildingIcons.get(2));
+		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
+			if (BuildingData.campusBuildings[q].type == "Library")
+				libraryOverlay.addItem(BuildingData.campusBuildings[q]);
+		}
+		overlays.add(libraryOverlay);
+		
+		// academic building icon
+		LehighItemizedOverlay otherOverlay = new LehighItemizedOverlay(BuildingIcons.get(3));
+		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
+			if (BuildingData.campusBuildings[q].type == "Other")
+				otherOverlay.addItem(BuildingData.campusBuildings[q]);
+		}
+		overlays.add(otherOverlay);
+		
+		// academic building icon
+		LehighItemizedOverlay residentialOverlay = new LehighItemizedOverlay(BuildingIcons.get(4));
+		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
+			if (BuildingData.campusBuildings[q].type == "Residential")
+				residentialOverlay.addItem(BuildingData.campusBuildings[q]);
+		}
+		overlays.add(residentialOverlay);
+		
+		// academic building icon
+		LehighItemizedOverlay restOverlay = new LehighItemizedOverlay(BuildingIcons.get(5));
+		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
+			if (BuildingData.campusBuildings[q].type == "Restaurant")
+				restOverlay.addItem(BuildingData.campusBuildings[q]);
+		}
+		overlays.add(restOverlay);
+		
+		// academic building icon
+		LehighItemizedOverlay serviceOverlay = new LehighItemizedOverlay(BuildingIcons.get(6));
+		for (int q = 0; q < BuildingData.campusBuildings.length; q++) {
+			if (BuildingData.campusBuildings[q].type == "Service")
+				serviceOverlay.addItem(BuildingData.campusBuildings[q]);
+		}
+		overlays.add(serviceOverlay);
 
 		// user location overlay
 		overlays.add(myLocation);
